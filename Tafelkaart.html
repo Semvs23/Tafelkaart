@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tafelkaart Generator</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+      }
+    </style>
+    <script>
+      function genereerTafelkaart(n) {
+        let tafelkaart = "<table>";
+
+        // Eerste rij: koptekst met de getallen 1 tot n
+        tafelkaart += "<tr><th>Tafel van</th>";
+        for (let i = 1; i <= n; i++) {
+          tafelkaart += "<th>" + i + "</th>";
+        }
+        tafelkaart += "</tr>";
+
+        // Rijen met de tafels van 1 tot n
+        for (let i = 1; i <= n; i++) {
+          tafelkaart += "<tr><th>" + i + "</th>"; // Linkerkant met de rijtitel (Tafel van i)
+          for (let j = 1; j <= n; j++) {
+            tafelkaart += "<td>" + i * j + "</td>"; // Vermenigvuldiging
+          }
+          tafelkaart += "</tr>";
+        }
+
+        tafelkaart += "</table>";
+        return tafelkaart;
+      }
+
+      window.onload = function () {
+        let n = parseInt(
+          prompt("Voer een getal in voor de grootte van de tafelkaart:")
+        );
+        if (!isNaN(n) && n > 0) {
+          document.getElementById("output").innerHTML = genereerTafelkaart(n);
+        } else {
+          alert("Voer een geldig positief getal in.");
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Tafelkaart Generator</h1>
+    <div id="output"></div>
+  </body>
+</html>
